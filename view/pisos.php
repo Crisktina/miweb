@@ -1,4 +1,9 @@
-
+<?php 
+session_start(); 
+if (!isset($_SESSION['username'])){
+    header("Location: ../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
-
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
 
@@ -33,12 +36,19 @@
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">
+                <?php
+                session_start(); 
+                if (!isset(($_SESSION['username']))){
+                ?>
                     <li class="nav-item">
                         <a href="../index.php">Login</a>
                     </li>
+                    <?php } else { ?>
+                    <li class="nav-item"><p class="text-white mx-4">¡Hola <?= $_SESSION['username']; ?>!</p></li>
                     <li class="nav-item">
                         <a href="../includes/logout.php">Logout</a>
                     </li>
+                    <?php } ?>
                 </ul>
 
 
@@ -58,6 +68,17 @@
            <th>Num. Lavabos</th>
        </tr>
        </thead>
+       
+       <?php
+       include_once '../includes/show-pisos.php';
+        foreach ($pisos as $pis): ?>
+        <tr>
+           <td><?= htmlspecialchars($pis['uidpis']); ?></td>
+           <td><?php if (htmlspecialchars($pis['tipus'])==1){echo 'Venta';} else {echo 'Lloguer';} ?></td>
+           <td><?= htmlspecialchars($pis['numHabitacions']); ?></td>
+           <td><?= htmlspecialchars($pis['numLavabos']); ?></td>
+       </tr>
+       <?php endforeach; ?>
    </table>
 </div>
 </body>

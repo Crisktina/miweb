@@ -1,4 +1,9 @@
-
+<?php 
+session_start(); 
+if (!isset($_SESSION['username'])){
+    header("Location: ../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +36,19 @@
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">
+                <?php
+                session_start(); 
+                if (!isset(($_SESSION['username']))){
+                ?>
                     <li class="nav-item">
                         <a href="../index.php">Login</a>
                     </li>
+                    <?php } else { ?>
+                    <li class="nav-item"><p class="text-white mx-4">¡Hola <?= $_SESSION['username']; ?>!</p></li>
                     <li class="nav-item">
                         <a href="../includes/logout.php">Logout</a>
                     </li>
+                    <?php } ?>
                 </ul>
 
 
@@ -46,7 +58,7 @@
 </nav>
 <div class="container mt-3">
     <h2>Alta Pis</h2>
-    <form action="" method="post">
+    <form action="../includes/create-pisos.php" method="post">
         <div class="mb-3">
             <label for="uidpis">Identificado Pis:</label>
             <input type="text" class="form-control" id="uidpis"  name="uidpis">

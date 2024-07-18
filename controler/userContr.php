@@ -69,6 +69,7 @@ class UserContr extends User{
 
         //setUser to DB
         if($this->setUser($this->username, $this->password, $this->email)){
+            
             header("Location: ../view/signup.php?error=FailedStmt");
         }
     }

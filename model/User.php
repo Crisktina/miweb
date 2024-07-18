@@ -32,15 +32,14 @@ class User extends Connection{
 
     protected function verifyLoginUser($username, $password){
         $error = 0;
-        $stmt = $this->connect()->prepare("SELECT password from users WHERE username = ? and status=?");
-        $status = 1;
-        if(!$stmt->execute(array($username, $status))){
+        $stmt = $this->connect()->prepare("SELECT users_pwd from users WHERE users_uid = ?");
+        if(!$stmt->execute(array($username))){
             $error = 1;
         }
 
         if($stmt->rowCount()>0){
             $res = $stmt->fetchAll();
-            $hashedPwd = $res[0]['password'];
+            $hashedPwd = $res[0]['users_pwd'];
             if(password_verify($password, $hashedPwd)==false){
                 $error = 2;
             }else{

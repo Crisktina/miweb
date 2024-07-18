@@ -45,3 +45,6 @@ Així doncs, cal ampliar aquesta pràctica amb les següents funcionalitats:
    • Usuari de la DB: prova
    • Contrasenya de la DB: prova
    Si algú no sap com fer-ho, que m’ho faci saber amb temps per a que li pugui ajuda
+
+foap408@gmail.com
+dyrv alyq ojiq acyd

@@ -30,16 +30,6 @@
                 </li>
             </ul>
             <div class="d-flex">
-                <ul class="navbar-nav  me-auto">
-                    <li class="nav-item">
-                        <a href="index.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="includes/logout.php">Logout</a>
-                    </li>
-                </ul>
-
-
             </div>
         </div>
     </div>
