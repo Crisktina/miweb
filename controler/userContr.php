@@ -1,12 +1,13 @@
 <?php 
 
 class UserContr extends User{
+
     private $username;
     private $password;
     private $repeatPwd;
     private $email;
 
-    public function __construct($username, $password, $repeatPwd=null, $email=null){
+    public function __construct( $username, $password, $repeatPwd=null, $email=null){
         $this->username = $username;
         $this->password = $password;
         $this->repeatPwd = $repeatPwd;
@@ -132,5 +133,12 @@ class UserContr extends User{
         }
         return $result;
     }
+
+    //traer user id de la base de datos comparando con user de la sessión para poder usuarlo en reservas
+     public function idUser(){
+
+         $res = $this->getUser($this->username);
+        return $res;
+     }
 
 }

@@ -33,6 +33,9 @@ if (!isset($_SESSION['username'])){
                 <li class="nav-item">
                     <a class="nav-link" href="noupis.php">Alta Pis</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mispisos.php">Mis Pisos</a>
+                </li>
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">

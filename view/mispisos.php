@@ -1,4 +1,9 @@
-
+<?php 
+session_start(); 
+if (!isset($_SESSION['username'])){
+    header("Location: ../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,9 +39,18 @@
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">
+                <?php
+                if (!isset(($_SESSION['username']))){
+                ?>
                     <li class="nav-item">
                         <a href="../index.php">Login</a>
                     </li>
+                    <?php } else { ?>
+                    <li class="nav-item"><p class="text-white mx-4">¡Hola <?= $_SESSION['username']; ?>!</p></li>
+                    <li class="nav-item">
+                        <a href="../includes/logout.php">Logout</a>
+                    </li>
+                    <?php } ?>
                 </ul>
 
 
@@ -44,28 +58,32 @@
         </div>
     </div>
 </nav>
-
 <div class="container mt-3">
-    <h2>Sign Up</h2>
-    <form action="../includes/signup-inc.php" method="post">
-        <div class="mb-3">
-            <label for="uid">Username:</label>
-            <input type="text" class="form-control" id="uid" placeholder="Enter your username" name="uid">
-        </div>
-        <div class="mb-3">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-        </div>
-        <div class="mb-3">
-            <label for="repeatPwd">Repeat password:</label>
-            <input type="password" class="form-control" id="repeatPwd" placeholder="Enter password" name="repeatPwd">
-        </div>
-        <div class="mb-3">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter password" name="email">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <h2>Mis pisos</h2>
+    
+   <table class="table table-striped">
+       <thead>
+       <tr>
+           <th>Identifador pis</th>
+           <th>Tipus</th>
+           <th>Num. habitacions</th>
+           <th>Num. Lavabos</th>
+           <th>Fecha reserva</th>
+       </tr>
+       </thead>
+       
+       <?php
+       include_once '../includes/show-reservas-user.php';
+        foreach ($pisosUser as $pis): ?>
+        <tr>
+           <td><?= htmlspecialchars($pis['uidpis']); ?></td>
+           <td><?php if (htmlspecialchars($pis['tipus'])==1){echo 'Venta';} else {echo 'Lloguer';} ?></td>
+           <td><?= htmlspecialchars($pis['numHabitacions']); ?></td>
+           <td><?= htmlspecialchars($pis['numLavabos']); ?></td>
+           <td><?= htmlspecialchars($pis['data_reserva']); ?></td>
+       </tr>
+       <?php endforeach; ?>
+   </table>
 </div>
 </body>
 </html>

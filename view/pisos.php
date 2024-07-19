@@ -33,11 +33,13 @@ if (!isset($_SESSION['username'])){
                 <li class="nav-item">
                     <a class="nav-link" href="noupis.php">Alta Pis</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mispisos.php">Mis Pisos</a>
+                </li>
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">
                 <?php
-                session_start(); 
                 if (!isset(($_SESSION['username']))){
                 ?>
                     <li class="nav-item">
@@ -66,6 +68,7 @@ if (!isset($_SESSION['username'])){
            <th>Tipus</th>
            <th>Num. habitacions</th>
            <th>Num. Lavabos</th>
+           <th>Reservas</th>
        </tr>
        </thead>
        
@@ -77,6 +80,19 @@ if (!isset($_SESSION['username'])){
            <td><?php if (htmlspecialchars($pis['tipus'])==1){echo 'Venta';} else {echo 'Lloguer';} ?></td>
            <td><?= htmlspecialchars($pis['numHabitacions']); ?></td>
            <td><?= htmlspecialchars($pis['numLavabos']); ?></td>
+           <td> 
+                <form method="post" action="../includes/procesar_reserva.php">
+                    <input type="hidden" name="pis_id" value="<?= htmlspecialchars($pis['id']); ?>">
+                    <input type="hidden" name="user_id" value="<?=htmlspecialchars($_SESSION['userID']); ?>">
+                    <button type="submit">Reservar</button>
+                </form>
+                <!-- <?php 
+                //require_once '../includes/show-reservas-user.php';
+                
+                ?>
+                <span><?php //htmlspecialchars($dataPis['data_reserva'])?></span> -->
+                
+            </td>
        </tr>
        <?php endforeach; ?>
    </table>

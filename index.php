@@ -28,6 +28,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="view/noupis.php">Alta Pis</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mispisos.php">Mis Pisos</a>
+                </li>
             </ul>
             <div class="d-flex">
             </div>
